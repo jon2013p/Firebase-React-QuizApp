@@ -2,6 +2,7 @@ import { LOGIN } from '../constants/routes';
 import { doLogout } from '../firebase';
 import { history } from '../store';
 import { LOGIN as LOGIN_ACTION, LOGOUT } from '../constants/actions';
+import {app, googleAuthProvider} from '../firebase/index';
 
 export const startSetLoginState = ( user ) => {
   return dispatch => {
@@ -33,3 +34,9 @@ export const startLogout = () => {
 export const logoutAction = () => ({
   type: LOGOUT
 });
+
+export const startLogin =() =>{
+  return () =>{
+      return app.auth().signInWithPopup(googleAuthProvider);
+  };
+};

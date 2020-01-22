@@ -6,6 +6,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { startSetLoginState } from '../actions/authActions';
 import { translateMessage } from '../helpers/translateMessage';
+import { startLogin} from "../actions/authActions";
 
 const hasErrors = ( fieldsError ) => {
   return Object.keys( fieldsError ).some( field => fieldsError[ field ] );
@@ -105,19 +106,31 @@ class LoginForm extends Component {
             <Checkbox>Recordarme</Checkbox>
           ) }
           <Button type='primary'
+
                   htmlType='submit'
-                  className='login-form-button'
+                  className='login-form-button '
                   disabled={ hasErrors( getFieldsError() ) }>
             Ingresar
           </Button>
+
+
         </Form.Item>
+        <Button onClick={startLogin}
+                type='primary'
+                htmlType='submit'
+                className='login-form-button'
+        > <Icon type="google" />
+          Ingresar con Google
+        </Button>
       </Form>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
+  startLogin:(uid) => dispatch(startLogin(uid)),
   startSetLoginState: ( uid ) => dispatch( startSetLoginState( uid ) )
+
 });
 
 export default compose(

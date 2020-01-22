@@ -60,7 +60,7 @@ class App extends React.Component {
           </Content>
 
           <Footer className='footer'>
-            Profe a Tiempo 2019
+            Admin Quiz App
           </Footer>
 
           </Layout>

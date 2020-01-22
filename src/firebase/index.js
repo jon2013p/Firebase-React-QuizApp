@@ -5,18 +5,21 @@ import 'firebase/storage';
 import 'firebase/functions';
 
 const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID
+  apiKey: "AIzaSyAvhPs1x56tXUTI39DFJqbvO5zXXOLhC9M",
+  authDomain: "quiz-c24e4.firebaseapp.com",
+  databaseURL: "https://quiz-c24e4.firebaseio.com",
+  projectId: "quiz-c24e4",
+  storageBucket: "quiz-c24e4.appspot.com",
+  messagingSenderId: "1061419858594",
+  appId: "1:1061419858594:web:bb76771b440f2bf80db5fb",
+  measurementId: "G-HVNL1M11H9"
 };
 
 app.initializeApp( config );
 
 // export default app;
 const auth = app.auth();
+export const googleAuthProvider =new app.auth.GoogleAuthProvider();
 // const db = app.database();
 // export const storage = app.storage();
 // export const functions = app.functions();
@@ -46,3 +49,5 @@ export const doLogout = () => auth.signOut();
 //
 // doPasswordUpdate = password =>
 //   this.auth.currentUser.updatePassword( password );
+
+export {app, googleAuthProvider as default};

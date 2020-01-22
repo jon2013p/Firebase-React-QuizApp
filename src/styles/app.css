@@ -9,7 +9,7 @@
 .sider__logo {
     height: 32px;
     /*background-image: url('../imgs/logo.png');*/
-    background-color: #00aeef;
+    background-color: lightskyblue;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -33,7 +33,7 @@
 }
 
 .header__trigger:hover {
-    color: #00aeef;
+    color: lightskyblue;
 }
 
 .content {

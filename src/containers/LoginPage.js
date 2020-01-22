@@ -3,7 +3,8 @@ import LoginForm from '../components/LoginForm';
 
 const LoginPage = () => (
   <div>
-    <h1>Ingresar</h1>
+    <h1>Inicia Sesión</h1>
+      <p>Por favor ingresa con las credenciales registradas en la app ☺ </p>
     <LoginForm />
   </div>
 );

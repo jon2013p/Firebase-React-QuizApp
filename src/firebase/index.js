@@ -3,6 +3,8 @@ import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/storage';
 import 'firebase/functions';
+import 'firebase/firebase-firestore';
+
 
 const config = {
   apiKey: "AIzaSyAvhPs1x56tXUTI39DFJqbvO5zXXOLhC9M",
@@ -16,7 +18,10 @@ const config = {
 };
 
 app.initializeApp( config );
+let data= app.firestore();
 
+let db;
+export default db=data;
 // export default app;
 const auth = app.auth();
 export const googleAuthProvider =new app.auth.GoogleAuthProvider();
@@ -50,4 +55,4 @@ export const doLogout = () => auth.signOut();
 // doPasswordUpdate = password =>
 //   this.auth.currentUser.updatePassword( password );
 
-export {app, googleAuthProvider as default};
+export {app};

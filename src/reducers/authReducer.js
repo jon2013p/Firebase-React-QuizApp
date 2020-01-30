@@ -1,4 +1,5 @@
-import { LOGIN, LOGOUT } from '../constants/actions';
+import { LOGIN, LOGOUT, LOGINGOOGLE } from '../constants/actions';
+import {googleAuthProvider} from "../firebase";
 
 
 const initialState = {};
@@ -11,6 +12,12 @@ export default ( state = initialState, action ) => {
         uid: action.user
       };
 
+    case LOGINGOOGLE :
+      return {
+        ...state,
+        uid: action.signInWithPopup(googleAuthProvider)
+      };
+
     case LOGOUT:
       return {};
 
@@ -18,3 +25,4 @@ export default ( state = initialState, action ) => {
       return state;
   }
 }
+

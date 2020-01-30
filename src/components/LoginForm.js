@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Checkbox, Form, Icon, Input, message } from 'antd';
 import { doSignInWithEmailAndPassword } from '../firebase';
+import { googleAuthProvider } from '../firebase/index';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -31,14 +32,13 @@ class LoginForm extends Component {
 
   handleSubmit = ( e ) => {
     e.preventDefault();
-    this.props.form.validateFields( ( err, values ) => {
+    this.props.form.validateFields( ( err ) => {
       if( !err ) {
-        console.log( 'Received values of form: ', values );
-        const { email, password } = values;
 
-        doSignInWithEmailAndPassword( email, password )
+
+        googleAuthProvider( )
           .then( authUser => {
-            this.props.startSetLoginState( authUser.uid );
+            this.props.startLogin(authUser.iud );
             window.location.reload();
           } )
           .catch( error => {
@@ -48,6 +48,26 @@ class LoginForm extends Component {
       }
     } );
   };
+
+    handleSubmit = ( e ) => {
+        e.preventDefault();
+        this.props.form.validateFields( ( err, values ) => {
+            if( !err ) {
+                console.log( 'Received values of form: ', values );
+                const { email, password } = values;
+
+                doSignInWithEmailAndPassword( email, password )
+                    .then( authUser => {
+                        this.props.startSetLoginState( authUser.uid );
+                        window.location.reload();
+                    } )
+                    .catch( error => {
+                        console.log( 'error', error );
+                        message.error( translateMessage( error.code ) );
+                    } );
+            }
+        } );
+    };
 
   render() {
     const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
@@ -115,14 +135,19 @@ class LoginForm extends Component {
 
 
         </Form.Item>
-        <Button onClick={startLogin}
-                type='primary'
-                htmlType='submit'
-                className='login-form-button'
-        > <Icon type="google" />
-          Ingresar con Google
-        </Button>
+           <Form.Item>
+               <Button onClick={startLogin}
+                       type='primary'
+                       htmlType='submit'
+                       className='login-form-button'
+               > <Icon type="google" />
+                   Ingresar con Google
+               </Button>
+           </Form.Item>
+
       </Form>
+
+
     );
   }
 }
